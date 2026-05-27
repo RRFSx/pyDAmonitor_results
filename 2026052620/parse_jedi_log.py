@@ -1,0 +1,1 @@
+../../pyDAmonitor/scripts/parse_jedi_log.py
