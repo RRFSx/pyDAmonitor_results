@@ -1,0 +1,1091 @@
+Configuration input file is: jedivar.pass2.yaml
+Full configuration is:YAMLConfiguration[path=jedivar.pass2.yaml, root={_member => {date => 2026-05-28T08:00:00Z , state variables => (water_vapor_mixing_ratio_wrt_moist_air,air_pressure_at_surface,air_temperature,northward_wind,eastward_wind,cloud_liquid_water,cloud_liquid_ice,rain_water,snow_water,graupel,equivalent_reflectivity_factor,upward_air_velocity) , stream name => ensemble} , output => {filename => mpasout.nc , stream name => analysis} , variational => {minimizer => {algorithm => DRPCG} , iterations => ({geometry => {nml_file => ./namelist.atmosphere , streams_file => ./streams.atmosphere , deallocate non-da fields => true , interpolation type => unstructured} , gradient norm reduction => 0.001 , ninner => 75})} , cost function => {cost type => 3D-Var , time window => {begin => 2026-05-28T06:00:00Z , length => PT4H} , jb evaluation => false , geometry => {nml_file => ./namelist.atmosphere , streams_file => ./streams.atmosphere , deallocate non-da fields => true , interpolation type => unstructured} , analysis variables => (water_vapor_mixing_ratio_wrt_moist_air,air_pressure_at_surface,air_temperature,northward_wind,eastward_wind,cloud_liquid_water,cloud_liquid_ice,rain_water,snow_water,graupel,equivalent_reflectivity_factor,upward_air_velocity) , background => {state variables => (water_vapor_mixing_ratio_wrt_moist_air,air_pressure_at_surface,air_temperature,northward_wind,eastward_wind,air_potential_temperature,dry_air_density,u,water_vapor_mixing_ratio_wrt_dry_air,air_pressure,landmask,seaice_fraction,snowc,skin_temperature_at_surface,ivgtyp,isltyp,snowh,vegetation_area_fraction,air_temperature_at_2m,water_vapor_mixing_ratio_wrt_moist_air_at_2m,eastward_wind_at_10m,northward_wind_at_10m,lai,smois,tslb,pressure_p,cloud_liquid_water,cloud_liquid_ice,graupel,rain_water,snow_water,cldfrac,equivalent_reflectivity_factor,w,upward_air_velocity) , filename => mpasout.nc , date => 2026-05-28T08:00:00Z} , background error => {covariance model => ensemble , localization => {localization method => SABER , saber central block => {saber block name => diffusion , active variables => (water_vapor_mixing_ratio_wrt_moist_air,air_pressure_at_surface,air_temperature,northward_wind,eastward_wind,cloud_liquid_water,cloud_liquid_ice,rain_water,snow_water,graupel,equivalent_reflectivity_factor,upward_air_velocity) , read => {groups => ({variables => (water_vapor_mixing_ratio_wrt_moist_air,air_pressure_at_surface,air_temperature,northward_wind,eastward_wind,cloud_liquid_water,cloud_liquid_ice,rain_water,snow_water,graupel,equivalent_reflectivity_factor,upward_air_velocity) , multivariate strategy => duplicated , horizontal => {filepath => data/diffusionloc/mpas_conus3km.diffusion_hz} , vertical => {levels => 59 , filepath => data/diffusionloc/mpas_conus3km.diffusion_vt}})}}} , members from template => {template => {date => 2026-05-28T08:00:00Z , state variables => (water_vapor_mixing_ratio_wrt_moist_air,air_pressure_at_surface,air_temperature,northward_wind,eastward_wind,cloud_liquid_water,cloud_liquid_ice,rain_water,snow_water,graupel,equivalent_reflectivity_factor,upward_air_velocity) , stream name => ensemble , filename => ./data/ens/mem%iMember%.nc} , pattern => %iMember% , start => 1 , zero padding => 3 , nmembers => 30}} , observations => {observers => ({obs space => {name => refl10cm , distribution => {name => RoundRobin , halo size => 500000} , obsdatain => {engine => {type => H5File , obsfile => data/obs/ioda_mrms_refl.nc , missing file action => warn}} , obsdataout => {engine => {type => H5File , allow overwrite => true , obsfile => jdiag_mrms_refl.nc}} , io pool => {write multiple files => false} , _source => mrms , simulated variables => (equivalentReflectivityFactor)} , obs operator => {name => VertInterp , vertical coordinate => height_above_mean_sea_level , observation vertical coordinate => height , interpolation method => linear , observation alias file => obsop_name_map.yaml} , obs localizations => ({localization method => Horizontal Gaspari-Cohn , lengthscale => 200000}) , _obsname => refl10cm , obs filters => ({filter => Background Check , filter variables => ({name => equivalentReflectivityFactor}) , threshold => 12 , action => {name => reject}})})}}}]
+OOPS_STATS ObjectCountHelper started.
+OOPS_STATS Run start                                - Runtime:      1.41 sec,  Memory: total:   104.42 GB, per task: min =   128.97 MB, max =   130.55 MB
+Run: Starting oops::Variational<MPAS, UFO and IODA observations>
+OOPS_STATS Variational start                        - Runtime:     1.41 sec,  Local Memory:   130.55 MB
+==> create geom
+atlas::mpi::push(world)
+Increase halo 1
+atlas::mpi::pop(world)
+atlas::mpi::push(world)
+atlas::mpi::pop(world)
+atlas::mpi::push(world)
+atlas::mpi::pop(world)
+atlas::mpi::push(world)
+atlas::mpi::pop(world)
+refl10cm: read database from data/obs/ioda_mrms_refl.nc (io pool size: 800)
+refl10cm processed vars: 1 Variables: equivalentReflectivityFactor
+refl10cm assimilated vars: 1 Variables: equivalentReflectivityFactor
+refl10cm: 0 observations are outside of time window out of 3922118
+refl10cm: 0 observations were rejected by QC checks out of 3922118
+No bias-correction is performed for this ObsSpace.
+3DVar window: TimeWindow: start = 2026-05-28T06:00:00Z, end = 2026-05-28T10:00:00Z, inclusive upper bound.
+
+OOPS_STATS IncrementalAssimilation start            - Runtime:    38.06 sec,  Local Memory:     2.50 GB
+Running incremental assimilation with 1 outer iterations.
+Minimizer algorithm=DRPCG
+QNewtonLMP: maxouter : 1
+IncrementalAssimilation: Configuration for outer iteration 0:
+LocalConfiguration[root={geometry => {nml_file => ./namelist.atmosphere , streams_file => ./streams.atmosphere , deallocate non-da fields => true , interpolation type => unstructured} , gradient norm reduction => 0.001 , ninner => 75 , iteration => 0 , total iterations => 1}]
+OOPS_STATS IncrementalAssimilation iteration 0      - Runtime:    38.06 sec,  Local Memory:     2.50 GB
+==> create geom
+atlas::mpi::push(world)
+Increase halo 1
+atlas::mpi::pop(world)
+atlas::mpi::push(world)
+atlas::mpi::pop(world)
+atlas::mpi::push(world)
+atlas::mpi::pop(world)
+atlas::mpi::push(world)
+atlas::mpi::pop(world)
+Key "mesh[address=0x4ebfc70],halo[size=1]" not found in cache "NodeColumnsHaloExchangeCache" , creating new, removable with key "mesh[address=0x4ebfc70],halo[size=1]"
+Key "mesh[address=0x8659820],halo[size=1]" not found in cache "NodeColumnsHaloExchangeCache" , creating new, removable with key "mesh[address=0x8659820],halo[size=1]"
+processWhere: selected 0 obs.
+BackgroundCheck obserr: 
+refl10cm equivalentReflectivityFactor nlocs = 3922118, nobs = 3922118, min = 5, max = 5, avg = 5
+processing a float: 12
+ObsErrorDiagonal covariance updated 3788404
+Observer::finalize QC = 
+refl10cm equivalentReflectivityFactor nlocs = 3922118, nobs = 3922118, min = 0, max = 15, avg = 0
+CostJo Observations: 
+refl10cm nobs= 3922118 Min=0, Max=56.0271, RMS=3.4361
+
+Jo Observations:
+Jo Obs :refl10cm:equivalentReflectivityFactor   : Nobs=  3788404, Min= 0.000000e+00, Max= 5.602707e+01, RMS= 3.444238e+00
+Jo Observations Equivalent:
+Jo H(x):refl10cm:equivalentReflectivityFactor   : Nobs=  3788404, Min= 0.000000e+00, Max= 6.228575e+01, RMS= 3.374325e+00
+Jo Bias Corrected Departures:
+Jo Dep :refl10cm:equivalentReflectivityFactor   : Nobs=  3788404, Min=-5.381742e+01, Max= 5.734124e+01, RMS= 3.432805e+00
+Jo Observations Errors:
+UFO Diagonal observation error covariance, inverse variances: refl10cm nobs= 3788404 Min=0.04, Max=0.04, RMS=0.04
+
+
+
+CostJo   : Nonlinear Jo(refl10cm) = 892862, nobs = 3788404, Jo/n = 0.235683, err = 5
+CostJo   : Nonlinear Jo = 892862
+Increment:diff x1 4
+Increment:diff x2 35
+Increment:diff x1 5
+Increment:diff x2 36
+Increment:diff x1 6
+Increment:diff x2 37
+Increment:diff x1 7
+Increment:diff x2 38
+Increment:diff x1 8
+Increment:diff x2 39
+Increment:diff x1 9
+Increment:diff x2 40
+Increment:diff x1 10
+Increment:diff x2 41
+Increment:diff x1 11
+Increment:diff x2 42
+Increment:diff x1 12
+Increment:diff x2 43
+Increment:diff x1 13
+Increment:diff x2 44
+Increment:diff x1 14
+Increment:diff x2 45
+Increment:diff x1 15
+Increment:diff x2 46
+Increment:diff x1 16
+Increment:diff x2 47
+Increment:diff x1 17
+Increment:diff x2 48
+Increment:diff x1 18
+Increment:diff x2 49
+Increment:diff x1 19
+Increment:diff x2 50
+Increment:diff x1 20
+Increment:diff x2 51
+Increment:diff x1 21
+Increment:diff x2 52
+Increment:diff x1 22
+Increment:diff x2 53
+Increment:diff x1 23
+Increment:diff x2 54
+Increment:diff x1 24
+Increment:diff x2 55
+Increment:diff x1 25
+Increment:diff x2 56
+Increment:diff x1 26
+Increment:diff x2 57
+Increment:diff x1 27
+Increment:diff x2 58
+Increment:diff x1 28
+Increment:diff x2 59
+Increment:diff x1 29
+Increment:diff x2 60
+Increment:diff x1 30
+Increment:diff x2 61
+Increment:diff x1 31
+Increment:diff x2 62
+Increment:diff x1 32
+Increment:diff x2 63
+Increment:diff x1 33
+Increment:diff x2 64
+Info     : Prepare ensemble configuration
+Info     : Read full ensemble
+Info     : Creating central block: 
+Info     : SaberCentralBlock using multivariate strategy: deprecated
+Info     : Creating single central block.
+Info     : Read data
+
+==================================================================================
+ saber::Diffusion read
+----------------------------------------------------------------------------------
+
+group 1 of 1
+atlas::mpi::push(world)
+atlas::mpi::pop(world)
+variables: [water_vapor_mixing_ratio_wrt_moist_air,air_pressure_at_surface,air_temperature,northward_wind,eastward_wind,cloud_liquid_water,cloud_liquid_ice,rain_water,snow_water,graupel,equivalent_reflectivity_factor,upward_air_velocity]
+multivariate strategy: duplicated
+Reading horizontal parameters
+  levels: 1
+Key "mesh[address=0x8659820]" not found in cache "NodeColumnsGatherScatterCache" , creating new, removable with key "mesh[address=0x8659820]"
+  Info     : Reading file: data/diffusionloc/mpas_conus3km.diffusion_hz.nc
+atlas::mpi::push(world)
+atlas::mpi::pop(world)
+  hzScales:  min: 4087.19  mean: 4087.19  max: 4087.19
+  hzNorm:    min: 2.4414  mean: 3.71484  max: 4.05626
+Reading vertical parameters
+  levels: 59
+  vertical strategy: normal
+  Info     : Reading file: data/diffusionloc/mpas_conus3km.diffusion_vt.nc
+atlas::mpi::push(world)
+atlas::mpi::pop(world)
+  vtScales:  min: 11  mean: 11  max: 11
+  vtNorm:    min: 3.7178  mean: 4.83632  max: 5.25235
+Diffusion: horizontal iterations: 6
+Diffusion: vertical iterations: 242
+Increment:diff x1 2
+Increment:diff x2 1
+==================================================================================
+
+CostJb: FG-BG
+  Valid time: 2026-05-28T08:00:00Z
+  Resolution: nCellsGlobal = 2341818, nFields = 12
+Fld=1  Min=0, Max=0, RMS=0 : water_vapor_mixing_ratio_wrt_moist_air
+Fld=2  Min=0, Max=0, RMS=0 : air_pressure_at_surface
+Fld=3  Min=0, Max=0, RMS=0 : air_temperature
+Fld=4  Min=0, Max=0, RMS=0 : northward_wind
+Fld=5  Min=0, Max=0, RMS=0 : eastward_wind
+Fld=6  Min=0, Max=0, RMS=0 : cloud_liquid_water
+Fld=7  Min=0, Max=0, RMS=0 : cloud_liquid_ice
+Fld=8  Min=0, Max=0, RMS=0 : rain_water
+Fld=9  Min=0, Max=0, RMS=0 : snow_water
+Fld=10  Min=0, Max=0, RMS=0 : graupel
+Fld=11  Min=0, Max=0, RMS=0 : equivalent_reflectivity_factor
+Fld=12  Min=0, Max=0, RMS=0 : upward_air_velocity
+Increment:diff x1 2
+Increment:diff x2 1
+CostJb: FG-BG
+  Valid time: 2026-05-28T08:00:00Z
+  Resolution: nCellsGlobal = 2341818, nFields = 12
+Fld=1  Min=0, Max=0, RMS=0 : water_vapor_mixing_ratio_wrt_moist_air
+Fld=2  Min=0, Max=0, RMS=0 : air_pressure_at_surface
+Fld=3  Min=0, Max=0, RMS=0 : air_temperature
+Fld=4  Min=0, Max=0, RMS=0 : northward_wind
+Fld=5  Min=0, Max=0, RMS=0 : eastward_wind
+Fld=6  Min=0, Max=0, RMS=0 : cloud_liquid_water
+Fld=7  Min=0, Max=0, RMS=0 : cloud_liquid_ice
+Fld=8  Min=0, Max=0, RMS=0 : rain_water
+Fld=9  Min=0, Max=0, RMS=0 : snow_water
+Fld=10  Min=0, Max=0, RMS=0 : graupel
+Fld=11  Min=0, Max=0, RMS=0 : equivalent_reflectivity_factor
+Fld=12  Min=0, Max=0, RMS=0 : upward_air_velocity
+CostFunction: Nonlinear J = 892862
+OOPS_STATS IncrementalAssimilation linearize 0      - Runtime:   131.91 sec,  Local Memory:     7.26 GB
+
+DRPCGMinimizer: max iter = 75, requested norm reduction = 0.001
+CostFunction::computeGradientFG: gradient:
+  Valid time: 2026-05-28T08:00:00Z
+  Resolution: nCellsGlobal = 2341818, nFields = 12
+Fld=1  Min=0, Max=0, RMS=0 : water_vapor_mixing_ratio_wrt_moist_air
+Fld=2  Min=0, Max=0, RMS=0 : air_pressure_at_surface
+Fld=3  Min=0, Max=0, RMS=0 : air_temperature
+Fld=4  Min=0, Max=0, RMS=0 : northward_wind
+Fld=5  Min=0, Max=0, RMS=0 : eastward_wind
+Fld=6  Min=0, Max=0, RMS=0 : cloud_liquid_water
+Fld=7  Min=0, Max=0, RMS=0 : cloud_liquid_ice
+Fld=8  Min=0, Max=0, RMS=0 : rain_water
+Fld=9  Min=0, Max=0, RMS=0 : snow_water
+Fld=10  Min=0, Max=0, RMS=0 : graupel
+Fld=11  Min=-1.6479, Max=1.87052, RMS=0.0132464 : equivalent_reflectivity_factor
+Fld=12  Min=0, Max=0, RMS=0 : upward_air_velocity
+DRPCGMinimizer rhs
+  Valid time: 2026-05-28T08:00:00Z
+  Resolution: nCellsGlobal = 2341818, nFields = 12
+Fld=1  Min=-0, Max=-0, RMS=0 : water_vapor_mixing_ratio_wrt_moist_air
+Fld=2  Min=-0, Max=-0, RMS=0 : air_pressure_at_surface
+Fld=3  Min=-0, Max=-0, RMS=0 : air_temperature
+Fld=4  Min=-0, Max=-0, RMS=0 : northward_wind
+Fld=5  Min=-0, Max=-0, RMS=0 : eastward_wind
+Fld=6  Min=-0, Max=-0, RMS=0 : cloud_liquid_water
+Fld=7  Min=-0, Max=-0, RMS=0 : cloud_liquid_ice
+Fld=8  Min=-0, Max=-0, RMS=0 : rain_water
+Fld=9  Min=-0, Max=-0, RMS=0 : snow_water
+Fld=10  Min=-0, Max=-0, RMS=0 : graupel
+Fld=11  Min=-1.87052, Max=1.6479, RMS=0.0132464 : equivalent_reflectivity_factor
+Fld=12  Min=-0, Max=-0, RMS=0 : upward_air_velocity
+Initial RHS squared norm = 24243.9
+OOPS_STATS DRPCG start                              - Runtime:   132.06 sec,  Local Memory:     7.26 GB
+normr0 24243.9
+  Residual norm ( 0) = 6448.871191459245
+  Norm reduction ( 0) = 1
+
+  Quadratic cost function: J   ( 0) = 892862.2929861639
+  Quadratic cost function: Jb  ( 0) = 0
+  Quadratic cost function: JoJc( 0) = 892862.2929861639
+
+
+ DRPCG Starting Iteration 1
+OOPS_STATS DRPCG iteration 1                        - Runtime:   138.05 sec,  Local Memory:     7.26 GB
+rdots 1.43646e+07      iteration    0
+DRPCG end of iteration 1
+  Residual norm ( 1) = 3790.069770672759
+  Norm reduction ( 1) = 0.5877105710674219
+
+  Quadratic cost function: J   ( 1) = 528371.8014865711
+  Quadratic cost function: Jb  ( 1) = 6389.03102826237
+  Quadratic cost function: JoJc( 1) = 521982.7704583087
+
+ DRPCG Starting Iteration 2
+OOPS_STATS DRPCG iteration 2                        - Runtime:   143.72 sec,  Local Memory:     7.26 GB
+rdots 5.93485e+06      iteration    1
+DRPCG end of iteration 2
+  Residual norm ( 2) = 2436.15562541755
+  Norm reduction ( 2) = 0.3777646588202825
+
+  Quadratic cost function: J   ( 2) = 406071.2414558623
+  Quadratic cost function: Jb  ( 2) = 13478.41306740078
+  Quadratic cost function: JoJc( 2) = 392592.8283884615
+
+ DRPCG Starting Iteration 3
+OOPS_STATS DRPCG iteration 3                        - Runtime:   149.45 sec,  Local Memory:     7.26 GB
+rdots 3.62397e+06      iteration    2
+DRPCG end of iteration 3
+  Residual norm ( 3) = 1903.672137167667
+  Norm reduction ( 3) = 0.2951946287419807
+
+  Quadratic cost function: J   ( 3) = 348312.2451097425
+  Quadratic cost function: Jb  ( 3) = 19898.91973062383
+  Quadratic cost function: JoJc( 3) = 328413.3253791187
+
+ DRPCG Starting Iteration 4
+OOPS_STATS DRPCG iteration 4                        - Runtime:   155.18 sec,  Local Memory:     7.26 GB
+rdots 2.3833e+06      iteration    3
+DRPCG end of iteration 4
+  Residual norm ( 4) = 1543.793256746886
+  Norm reduction ( 4) = 0.2393896871116691
+
+  Quadratic cost function: J   ( 4) = 314220.245061666
+  Quadratic cost function: Jb  ( 4) = 25971.85693878797
+  Quadratic cost function: JoJc( 4) = 288248.388122878
+
+ DRPCG Starting Iteration 5
+OOPS_STATS DRPCG iteration 5                        - Runtime:   160.96 sec,  Local Memory:     7.26 GB
+rdots 1.57918e+06      iteration    4
+DRPCG end of iteration 5
+  Residual norm ( 5) = 1256.654000631237
+  Norm reduction ( 5) = 0.1948641806174582
+
+  Quadratic cost function: J   ( 5) = 292344.9155818612
+  Quadratic cost function: Jb  ( 5) = 31587.75200189242
+  Quadratic cost function: JoJc( 5) = 260757.1635799687
+
+ DRPCG Starting Iteration 6
+rdots 1.01563e+06      iteration    5
+DRPCG end of iteration 6
+  Residual norm ( 6) = 1007.785937147275
+  Norm reduction ( 6) = 0.1562732309620273
+
+  Quadratic cost function: J   ( 6) = 276967.0629930836
+  Quadratic cost function: Jb  ( 6) = 36932.35693451403
+  Quadratic cost function: JoJc( 6) = 240034.7060585696
+
+ DRPCG Starting Iteration 7
+rdots 726037      iteration    6
+DRPCG end of iteration 7
+  Residual norm ( 7) = 852.0777632673461
+  Norm reduction ( 7) = 0.1321282032111016
+
+  Quadratic cost function: J   ( 7) = 266229.0060567989
+  Quadratic cost function: Jb  ( 7) = 41783.75248523417
+  Quadratic cost function: JoJc( 7) = 224445.2535715647
+
+ DRPCG Starting Iteration 8
+rdots 505088      iteration    7
+DRPCG end of iteration 8
+  Residual norm ( 8) = 710.6951822505981
+  Norm reduction ( 8) = 0.1102045863765784
+
+  Quadratic cost function: J   ( 8) = 258731.6449359136
+  Quadratic cost function: Jb  ( 8) = 46030.10209815757
+  Quadratic cost function: JoJc( 8) = 212701.542837756
+
+ DRPCG Starting Iteration 9
+rdots 373625      iteration    8
+DRPCG end of iteration 9
+  Residual norm ( 9) = 611.2488574292945
+  Norm reduction ( 9) = 0.09478385275221812
+
+  Quadratic cost function: J   ( 9) = 253366.180772324
+  Quadratic cost function: Jb  ( 9) = 49728.59789018753
+  Quadratic cost function: JoJc( 9) = 203637.5828821365
+
+ DRPCG Starting Iteration 10
+OOPS_STATS DRPCG iteration 10                       - Runtime:   190.42 sec,  Local Memory:     7.26 GB
+rdots 262034      iteration    9
+DRPCG end of iteration 10
+  Residual norm (10) = 511.892665248682
+  Norm reduction (10) = 0.07937709562669236
+
+  Quadratic cost function: J   (10) = 249439.0150466828
+  Quadratic cost function: Jb  (10) = 52951.22385946839
+  Quadratic cost function: JoJc(10) = 196487.7911872144
+
+ DRPCG Starting Iteration 11
+rdots 177896      iteration    10
+DRPCG end of iteration 11
+  Residual norm (11) = 421.7770488305703
+  Norm reduction (11) = 0.06540323667639125
+
+  Quadratic cost function: J   (11) = 246504.1067878539
+  Quadratic cost function: Jb  (11) = 55772.12096706209
+  Quadratic cost function: JoJc(11) = 190731.9858207918
+
+ DRPCG Starting Iteration 12
+rdots 127884      iteration    11
+DRPCG end of iteration 12
+  Residual norm (12) = 357.6091526486808
+  Norm reduction (12) = 0.05545298425595648
+
+  Quadratic cost function: J   (12) = 244378.09628227
+  Quadratic cost function: Jb  (12) = 58133.74467395234
+  Quadratic cost function: JoJc(12) = 186244.3516083177
+
+ DRPCG Starting Iteration 13
+rdots 100664      iteration    12
+DRPCG end of iteration 13
+  Residual norm (13) = 317.2752815528229
+  Norm reduction (13) = 0.04919857632960879
+
+  Quadratic cost function: J   (13) = 242889.1587049053
+  Quadratic cost function: Jb  (13) = 60016.63439929792
+  Quadratic cost function: JoJc(13) = 182872.5243056074
+
+ DRPCG Starting Iteration 14
+rdots 70600.4      iteration    13
+DRPCG end of iteration 14
+  Residual norm (14) = 265.707303056943
+  Norm reduction (14) = 0.04120214145521164
+
+  Quadratic cost function: J   (14) = 241867.0953567745
+  Quadratic cost function: Jb  (14) = 61462.6428632842
+  Quadratic cost function: JoJc(14) = 180404.4524934903
+
+ DRPCG Starting Iteration 15
+OOPS_STATS DRPCG iteration 15                       - Runtime:   221.65 sec,  Local Memory:     7.26 GB
+rdots 47184.5      iteration    14
+DRPCG end of iteration 15
+  Residual norm (15) = 217.2198934422139
+  Norm reduction (15) = 0.03368339775957931
+
+  Quadratic cost function: J   (15) = 241030.2843235959
+  Quadratic cost function: Jb  (15) = 62777.77165660247
+  Quadratic cost function: JoJc(15) = 178252.5126669935
+
+ DRPCG Starting Iteration 16
+rdots 37406.2      iteration    15
+DRPCG end of iteration 16
+  Residual norm (16) = 193.4069417395396
+  Norm reduction (16) = 0.02999082102859859
+
+  Quadratic cost function: J   (16) = 240454.9569959
+  Quadratic cost function: Jb  (16) = 63777.17056473318
+  Quadratic cost function: JoJc(16) = 176677.7864311668
+
+ DRPCG Starting Iteration 17
+rdots 26056.5      iteration    16
+DRPCG end of iteration 17
+  Residual norm (17) = 161.4203704723874
+  Norm reduction (17) = 0.0250307946429709
+
+  Quadratic cost function: J   (17) = 240053.8452306335
+  Quadratic cost function: Jb  (17) = 64538.28232476588
+  Quadratic cost function: JoJc(17) = 175515.5629058676
+
+ DRPCG Starting Iteration 18
+rdots 19764      iteration    17
+DRPCG end of iteration 18
+  Residual norm (18) = 140.5843770517896
+  Norm reduction (18) = 0.02179984262020564
+
+  Quadratic cost function: J   (18) = 239756.3856980889
+  Quadratic cost function: Jb  (18) = 65150.18804583473
+  Quadratic cost function: JoJc(18) = 174606.1976522542
+
+ DRPCG Starting Iteration 19
+rdots 13524.9      iteration    18
+DRPCG end of iteration 19
+  Residual norm (19) = 116.2964642244528
+  Norm reduction (19) = 0.01803361561609007
+
+  Quadratic cost function: J   (19) = 239549.0835932962
+  Quadratic cost function: Jb  (19) = 65609.49714778119
+  Quadratic cost function: JoJc(19) = 173939.586445515
+
+ DRPCG Starting Iteration 20
+OOPS_STATS DRPCG iteration 20                       - Runtime:   251.78 sec,  Local Memory:     7.26 GB
+rdots 9362.42      iteration    19
+DRPCG end of iteration 20
+  Residual norm (20) = 96.75960431599547
+  Norm reduction (20) = 0.01500411489752531
+
+  Quadratic cost function: J   (20) = 239387.5175932737
+  Quadratic cost function: Jb  (20) = 65993.60432006526
+  Quadratic cost function: JoJc(20) = 173393.9132732084
+
+ DRPCG Starting Iteration 21
+rdots 7248.06      iteration    20
+DRPCG end of iteration 21
+  Residual norm (21) = 85.13552880006984
+  Norm reduction (21) = 0.01320161719353638
+
+  Quadratic cost function: J   (21) = 239276.4754123024
+  Quadratic cost function: Jb  (21) = 66276.01976489788
+  Quadratic cost function: JoJc(21) = 173000.4556474045
+
+ DRPCG Starting Iteration 22
+rdots 5116.33      iteration    21
+DRPCG end of iteration 22
+  Residual norm (22) = 71.52853279352109
+  Norm reduction (22) = 0.01109163614374126
+
+  Quadratic cost function: J   (22) = 239199.0864738572
+  Quadratic cost function: Jb  (22) = 66485.2184154366
+  Quadratic cost function: JoJc(22) = 172713.8680584206
+
+ DRPCG Starting Iteration 23
+rdots 3931.38      iteration    22
+DRPCG end of iteration 23
+  Residual norm (23) = 62.70073612887863
+  Norm reduction (23) = 0.009722745929848656
+
+  Quadratic cost function: J   (23) = 239141.40946101
+  Quadratic cost function: Jb  (23) = 66650.30914635668
+  Quadratic cost function: JoJc(23) = 172491.1003146533
+
+ DRPCG Starting Iteration 24
+rdots 2837.62      iteration    23
+DRPCG end of iteration 24
+  Residual norm (24) = 53.26932233526477
+  Norm reduction (24) = 0.008260255284027627
+
+  Quadratic cost function: J   (24) = 239102.0485230355
+  Quadratic cost function: Jb  (24) = 66769.11657574543
+  Quadratic cost function: JoJc(24) = 172332.9319472901
+
+ DRPCG Starting Iteration 25
+OOPS_STATS DRPCG iteration 25                       - Runtime:   282.28 sec,  Local Memory:     7.26 GB
+rdots 1815.23      iteration    24
+DRPCG end of iteration 25
+  Residual norm (25) = 42.60552728810959
+  Norm reduction (25) = 0.00660666433290457
+
+  Quadratic cost function: J   (25) = 239069.0837442351
+  Quadratic cost function: Jb  (25) = 66873.93940964282
+  Quadratic cost function: JoJc(25) = 172195.1443345923
+
+ DRPCG Starting Iteration 26
+rdots 1361.22      iteration    25
+DRPCG end of iteration 26
+  Residual norm (26) = 36.89472626013232
+  Norm reduction (26) = 0.005721113845318379
+
+  Quadratic cost function: J   (26) = 239045.8959739534
+  Quadratic cost function: Jb  (26) = 66951.67095440871
+  Quadratic cost function: JoJc(26) = 172094.2250195447
+
+ DRPCG Starting Iteration 27
+rdots 957.855      iteration    26
+DRPCG end of iteration 27
+  Residual norm (27) = 30.94923611973556
+  Norm reduction (27) = 0.004799171079851013
+
+  Quadratic cost function: J   (27) = 239029.0576410849
+  Quadratic cost function: Jb  (27) = 67011.03951266312
+  Quadratic cost function: JoJc(27) = 172018.0181284218
+
+ DRPCG Starting Iteration 28
+rdots 700.15      iteration    27
+DRPCG end of iteration 28
+  Residual norm (28) = 26.4603434824223
+  Norm reduction (28) = 0.004103096913684033
+
+  Quadratic cost function: J   (28) = 239017.6001084936
+  Quadratic cost function: Jb  (28) = 67053.39208157297
+  Quadratic cost function: JoJc(28) = 171964.2080269206
+
+ DRPCG Starting Iteration 29
+rdots 481.308      iteration    28
+DRPCG end of iteration 29
+  Residual norm (29) = 21.93874265499429
+  Norm reduction (29) = 0.003401950822657075
+
+  Quadratic cost function: J   (29) = 239009.3229952973
+  Quadratic cost function: Jb  (29) = 67085.37227580391
+  Quadratic cost function: JoJc(29) = 171923.9507194934
+
+ DRPCG Starting Iteration 30
+OOPS_STATS DRPCG iteration 30                       - Runtime:   313.55 sec,  Local Memory:     7.26 GB
+rdots 332.687      iteration    29
+DRPCG end of iteration 30
+  Residual norm (30) = 18.2396982507338
+  Norm reduction (30) = 0.002828355181739417
+
+  Quadratic cost function: J   (30) = 239003.2070885887
+  Quadratic cost function: Jb  (30) = 67110.04947992017
+  Quadratic cost function: JoJc(30) = 171893.1576086686
+
+ DRPCG Starting Iteration 31
+rdots 250.635      iteration    30
+DRPCG end of iteration 31
+  Residual norm (31) = 15.83146293301277
+  Norm reduction (31) = 0.002454920010494183
+
+  Quadratic cost function: J   (31) = 238998.8917615364
+  Quadratic cost function: Jb  (31) = 67128.21653273539
+  Quadratic cost function: JoJc(31) = 171870.675228801
+
+ DRPCG Starting Iteration 32
+rdots 186.296      iteration    31
+DRPCG end of iteration 32
+  Residual norm (32) = 13.64902297579774
+  Norm reduction (32) = 0.002116497999506368
+
+  Quadratic cost function: J   (32) = 238996.0516939636
+  Quadratic cost function: Jb  (32) = 67140.64976567111
+  Quadratic cost function: JoJc(32) = 171855.4019282925
+
+ DRPCG Starting Iteration 33
+rdots 126.802      iteration    32
+DRPCG end of iteration 33
+  Residual norm (33) = 11.26062735680859
+  Norm reduction (33) = 0.001746139288953692
+
+  Quadratic cost function: J   (33) = 238993.9541525866
+  Quadratic cost function: Jb  (33) = 67150.17247453507
+  Quadratic cost function: JoJc(33) = 171843.7816780516
+
+ DRPCG Starting Iteration 34
+rdots 93.5342      iteration    33
+DRPCG end of iteration 34
+  Residual norm (34) = 9.671308561499568
+  Norm reduction (34) = 0.001499690143339823
+
+  Quadratic cost function: J   (34) = 238992.4350164118
+  Quadratic cost function: Jb  (34) = 67157.32000829114
+  Quadratic cost function: JoJc(34) = 171835.1150081207
+
+ DRPCG Starting Iteration 35
+OOPS_STATS DRPCG iteration 35                       - Runtime:   345.30 sec,  Local Memory:     7.26 GB
+rdots 66.4474      iteration    34
+DRPCG end of iteration 35
+  Residual norm (35) = 8.151525545254035
+  Norm reduction (35) = 0.001264023625723793
+
+  Quadratic cost function: J   (35) = 238991.3178794449
+  Quadratic cost function: Jb  (35) = 67162.76417124276
+  Quadratic cost function: JoJc(35) = 171828.5537082021
+
+ DRPCG Starting Iteration 36
+rdots 48.1561      iteration    35
+DRPCG end of iteration 36
+  Residual norm (36) = 6.939458356026758
+  Norm reduction (36) = 0.001076073339039123
+
+  Quadratic cost function: J   (36) = 238990.5541965945
+  Quadratic cost function: Jb  (36) = 67166.61279917756
+  Quadratic cost function: JoJc(36) = 171823.941397417
+
+ DRPCG Starting Iteration 37
+rdots 32.6829      iteration    36
+DRPCG end of iteration 37
+  Residual norm (37) = 5.716895502748288
+  Norm reduction (37) = 0.0008864955327871379
+
+  Quadratic cost function: J   (37) = 238989.9831349109
+  Quadratic cost function: Jb  (37) = 67169.58524408343
+  Quadratic cost function: JoJc(37) = 171820.3978908275
+
+DRPCG: Achieved required reduction in residual norm.
+OOPS_STATS DRPCG end                                - Runtime:   364.43 sec,  Local Memory:     7.26 GB
+DRPCGMinimizer: reduction in residual norm = 0.000886496
+DRPCGMinimizer output increment:
+  Valid time: 2026-05-28T08:00:00Z
+  Resolution: nCellsGlobal = 2341818, nFields = 12
+Fld=1  Min=-0.0101817, Max=0.0091765, RMS=8.00829e-05 : water_vapor_mixing_ratio_wrt_moist_air
+Fld=2  Min=-67.4798, Max=86.7038, RMS=1.53771 : air_pressure_at_surface
+Fld=3  Min=-7.05123, Max=6.0975, RMS=0.0799011 : air_temperature
+Fld=4  Min=-19.227, Max=21.6032, RMS=0.307701 : northward_wind
+Fld=5  Min=-33.9349, Max=27.5581, RMS=0.328381 : eastward_wind
+Fld=6  Min=-0.00343986, Max=0.00346864, RMS=1.30333e-05 : cloud_liquid_water
+Fld=7  Min=-0.00107066, Max=0.000640353, RMS=2.24107e-06 : cloud_liquid_ice
+Fld=8  Min=-0.00498401, Max=0.00329431, RMS=2.68586e-05 : rain_water
+Fld=9  Min=-0.00481097, Max=0.00535565, RMS=4.05116e-05 : snow_water
+Fld=10  Min=-0.00554592, Max=0.00416097, RMS=1.58537e-05 : graupel
+Fld=11  Min=-72.0711, Max=58.8865, RMS=1.92125 : equivalent_reflectivity_factor
+Fld=12  Min=0, Max=0, RMS=0 : upward_air_velocity
+CostFunction::addIncrement: First guess:
+  Valid time: 2026-05-28T08:00:00Z
+  Resolution: nCellsGlobal = 2341818, nFields = 35
+Fld=1  Min=0, Max=0.0220659, RMS=0.00617119 : water_vapor_mixing_ratio_wrt_moist_air
+Fld=2  Min=63093.7, Max=102586, RMS=96423.3 : air_pressure_at_surface
+Fld=3  Min=190.954, Max=302.65, RMS=260.182 : air_temperature
+Fld=4  Min=-48.8887, Max=49.692, RMS=9.09938 : northward_wind
+Fld=5  Min=-36.5448, Max=69.6634, RMS=11.0382 : eastward_wind
+Fld=6  Min=269.847, Max=640.872, RMS=355.576 : air_potential_temperature
+Fld=7  Min=0.0386497, Max=1.30676, RMS=0.782724 : dry_air_density
+Fld=8  Min=-72.3687, Max=72.7536, RMS=10.1578 : u
+Fld=9  Min=0, Max=0.0225637, RMS=0.00624665 : water_vapor_mixing_ratio_wrt_dry_air
+Fld=10  Min=2444.56, Max=102470, RMS=64243.3 : air_pressure
+Fld=11  Min=0, Max=1, RMS=0.790008 : landmask
+Fld=12  Min=0, Max=1, RMS=0.0534985 : seaice_fraction
+Fld=13  Min=0, Max=1, RMS=0.0593183 : snowc
+Fld=14  Min=249.55, Max=303.905, RMS=289.465 : skin_temperature_at_surface
+Fld=15  Min=1, Max=19, RMS=12.7664 : ivgtyp
+Fld=16  Min=1, Max=16, RMS=9.97061 : isltyp
+Fld=17  Min=0, Max=7.5, RMS=0.163117 : snowh
+Fld=18  Min=0, Max=0.915062, RMS=0.402774 : vegetation_area_fraction
+Fld=19  Min=258.472, Max=301.641, RMS=289.64 : air_temperature_at_2m
+Fld=20  Min=0.000355879, Max=0.0220302, RMS=0.0114103 : water_vapor_mixing_ratio_wrt_moist_air_at_2m
+Fld=21  Min=-13.6711, Max=18.5052, RMS=3.30466 : eastward_wind_at_10m
+Fld=22  Min=-16.6891, Max=15.1521, RMS=3.6203 : northward_wind_at_10m
+Fld=23  Min=0, Max=6.54409, RMS=1.60091 : lai
+Fld=24  Min=0.00200001, Max=1, RMS=0.635262 : smois
+Fld=25  Min=259.519, Max=308.035, RMS=289.967 : tslb
+Fld=26  Min=-915.191, Max=5828.96, RMS=3070.01 : pressure_p
+Fld=27  Min=0, Max=0.00542544, RMS=4.8307e-05 : cloud_liquid_water
+Fld=28  Min=0, Max=0.00203705, RMS=5.06978e-06 : cloud_liquid_ice
+Fld=29  Min=0, Max=0.0107079, RMS=2.44579e-05 : graupel
+Fld=30  Min=0, Max=0.00815773, RMS=4.29531e-05 : rain_water
+Fld=31  Min=0, Max=0.00562691, RMS=5.17791e-05 : snow_water
+Fld=32  Min=0, Max=1, RMS=0.212648 : cldfrac
+Fld=33  Min=0, Max=69.1282, RMS=3.25081 : equivalent_reflectivity_factor
+Fld=34  Min=-7.99905, Max=30.5805, RMS=0.139124 : w
+Fld=35  Min=0, Max=0, RMS=0 : upward_air_velocity
+CostFunction::addIncrement: Increment:
+  Valid time: 2026-05-28T08:00:00Z
+  Resolution: nCellsGlobal = 2341818, nFields = 12
+Fld=1  Min=-0.0101817, Max=0.0091765, RMS=8.00829e-05 : water_vapor_mixing_ratio_wrt_moist_air
+Fld=2  Min=-67.4798, Max=86.7038, RMS=1.53771 : air_pressure_at_surface
+Fld=3  Min=-7.05123, Max=6.0975, RMS=0.0799011 : air_temperature
+Fld=4  Min=-19.227, Max=21.6032, RMS=0.307701 : northward_wind
+Fld=5  Min=-33.9349, Max=27.5581, RMS=0.328381 : eastward_wind
+Fld=6  Min=-0.00343986, Max=0.00346864, RMS=1.30333e-05 : cloud_liquid_water
+Fld=7  Min=-0.00107066, Max=0.000640353, RMS=2.24107e-06 : cloud_liquid_ice
+Fld=8  Min=-0.00498401, Max=0.00329431, RMS=2.68586e-05 : rain_water
+Fld=9  Min=-0.00481097, Max=0.00535565, RMS=4.05116e-05 : snow_water
+Fld=10  Min=-0.00554592, Max=0.00416097, RMS=1.58537e-05 : graupel
+Fld=11  Min=-72.0711, Max=58.8865, RMS=1.92125 : equivalent_reflectivity_factor
+Fld=12  Min=0, Max=0, RMS=0 : upward_air_velocity
+CostFunction::addIncrement: Analysis: 
+  Valid time: 2026-05-28T08:00:00Z
+  Resolution: nCellsGlobal = 2341818, nFields = 35
+Fld=1  Min=0, Max=0.0220714, RMS=0.00617014 : water_vapor_mixing_ratio_wrt_moist_air
+Fld=2  Min=63093.7, Max=102586, RMS=96423.3 : air_pressure_at_surface
+Fld=3  Min=190.11, Max=302.65, RMS=260.183 : air_temperature
+Fld=4  Min=-48.8887, Max=49.692, RMS=9.09867 : northward_wind
+Fld=5  Min=-36.5448, Max=69.6634, RMS=11.0408 : eastward_wind
+Fld=6  Min=269.847, Max=640.872, RMS=355.576 : air_potential_temperature
+Fld=7  Min=0.0386497, Max=1.30676, RMS=0.782725 : dry_air_density
+Fld=8  Min=-72.3687, Max=72.7536, RMS=10.1588 : u
+Fld=9  Min=0, Max=0.0225695, RMS=0.00624558 : water_vapor_mixing_ratio_wrt_dry_air
+Fld=10  Min=2441.42, Max=102470, RMS=64243.3 : air_pressure
+Fld=11  Min=0, Max=1, RMS=0.790008 : landmask
+Fld=12  Min=0, Max=1, RMS=0.0534985 : seaice_fraction
+Fld=13  Min=0, Max=1, RMS=0.0593183 : snowc
+Fld=14  Min=249.55, Max=303.905, RMS=289.465 : skin_temperature_at_surface
+Fld=15  Min=1, Max=19, RMS=12.7664 : ivgtyp
+Fld=16  Min=1, Max=16, RMS=9.97061 : isltyp
+Fld=17  Min=0, Max=7.5, RMS=0.163117 : snowh
+Fld=18  Min=0, Max=0.915062, RMS=0.402774 : vegetation_area_fraction
+Fld=19  Min=258.473, Max=301.641, RMS=289.641 : air_temperature_at_2m
+Fld=20  Min=0.000355879, Max=0.0220301, RMS=0.0114098 : water_vapor_mixing_ratio_wrt_moist_air_at_2m
+Fld=21  Min=-13.6711, Max=18.5052, RMS=3.30466 : eastward_wind_at_10m
+Fld=22  Min=-16.6891, Max=15.1521, RMS=3.6203 : northward_wind_at_10m
+Fld=23  Min=0, Max=6.54409, RMS=1.60091 : lai
+Fld=24  Min=0.00200001, Max=1, RMS=0.635262 : smois
+Fld=25  Min=259.519, Max=308.035, RMS=289.967 : tslb
+Fld=26  Min=-916.003, Max=5814.43, RMS=3070.02 : pressure_p
+Fld=27  Min=0, Max=0.00515921, RMS=4.75339e-05 : cloud_liquid_water
+Fld=28  Min=0, Max=0.00203705, RMS=5.11706e-06 : cloud_liquid_ice
+Fld=29  Min=0, Max=0.0099122, RMS=2.20403e-05 : graupel
+Fld=30  Min=0, Max=0.00756393, RMS=3.70879e-05 : rain_water
+Fld=31  Min=0, Max=0.00734326, RMS=5.82682e-05 : snow_water
+Fld=32  Min=0, Max=1, RMS=0.212648 : cldfrac
+Fld=33  Min=0, Max=68.89, RMS=2.91862 : equivalent_reflectivity_factor
+Fld=34  Min=-7.99905, Max=30.5805, RMS=0.139124 : w
+Fld=35  Min=0, Max=0, RMS=0 : upward_air_velocity
+OOPS_STATS IncrementalAssimilation end              - Runtime:   364.81 sec,  Local Memory:     7.26 GB
+Variational: incremental assimilation done 1 iterations.
+QC refl10cm equivalentReflectivityFactor: 133714 H(x) failed.
+QC refl10cm equivalentReflectivityFactor: 3788404 passed out of 3922118 observations.
+ObsErrorDiagonal covariance updated 3788404
+Observer::finalize QC = 
+refl10cm equivalentReflectivityFactor nlocs = 3922118, nobs = 3922118, min = 0, max = 15, avg = 0
+Jo Observations:
+Jo Obs :refl10cm:equivalentReflectivityFactor   : Nobs=  3788404, Min= 0.000000e+00, Max= 5.602707e+01, RMS= 3.444238e+00
+Jo Observations Equivalent:
+Jo H(x):refl10cm:equivalentReflectivityFactor   : Nobs=  3788404, Min= 0.000000e+00, Max= 5.597125e+01, RMS= 3.099052e+00
+Jo Bias Corrected Departures:
+Jo Dep :refl10cm:equivalentReflectivityFactor   : Nobs=  3788404, Min=-5.184170e+01, Max= 5.264941e+01, RMS= 1.512942e+00
+Jo Observations Errors:
+UFO Diagonal observation error covariance, inverse variances: refl10cm nobs= 3788404 Min=0.04, Max=0.04, RMS=0.04
+
+
+
+CostJo   : Nonlinear Jo(refl10cm) = 173433, nobs = 3788404, Jo/n = 0.0457799, err = 5
+CostJo   : Nonlinear Jo = 173433
+Increment:diff x1 2
+Increment:diff x2 1
+CostJb: FG-BG
+  Valid time: 2026-05-28T08:00:00Z
+  Resolution: nCellsGlobal = 2341818, nFields = 12
+Fld=1  Min=-0.009987, Max=0.0091765, RMS=7.98645e-05 : water_vapor_mixing_ratio_wrt_moist_air
+Fld=2  Min=-67.4798, Max=86.7038, RMS=1.53771 : air_pressure_at_surface
+Fld=3  Min=-7.05123, Max=6.0975, RMS=0.0799011 : air_temperature
+Fld=4  Min=-19.227, Max=21.6032, RMS=0.307701 : northward_wind
+Fld=5  Min=-33.9349, Max=27.5581, RMS=0.328381 : eastward_wind
+Fld=6  Min=-0.00226144, Max=0.00346864, RMS=1.00053e-05 : cloud_liquid_water
+Fld=7  Min=-0.000616283, Max=0.000640353, RMS=1.93817e-06 : cloud_liquid_ice
+Fld=8  Min=-0.00461403, Max=0.00329431, RMS=1.85419e-05 : rain_water
+Fld=9  Min=-0.00388578, Max=0.00535565, RMS=3.81533e-05 : snow_water
+Fld=10  Min=-0.00554592, Max=0.00416097, RMS=1.23151e-05 : graupel
+Fld=11  Min=-64.1727, Max=58.8865, RMS=1.86409 : equivalent_reflectivity_factor
+Fld=12  Min=0, Max=0, RMS=0 : upward_air_velocity
+CostFunction: Nonlinear J = 173433
+OOPS_STATS Variational end                          - Runtime:   385.32 sec,  Local Memory:     7.26 GB
+==> destruct MPAS corelist and domain:  0
+Tried to erase key "mesh[address=0x4ebfc70],halo[size=0]" from cache "NodeColumnsHaloExchangeCache" but it was not found.
+Erased key "mesh[address=0x4ebfc70],halo[size=1]" from cache "NodeColumnsHaloExchangeCache".
+==> destruct MPAS corelist and domain:  1
+refl10cm: save database to jdiag_mrms_refl.nc (io pool size: 4)
+QC refl10cm equivalentReflectivityFactor: 133714 H(x) failed.
+QC refl10cm equivalentReflectivityFactor: 3788404 passed out of 3922118 observations.
+Erased key "mesh[address=0x8659820]" from cache "NodeColumnsGatherScatterCache".
+Tried to erase key "mesh[address=0x8659820],halo[size=0]" from cache "NodeColumnsHaloExchangeCache" but it was not found.
+Erased key "mesh[address=0x8659820],halo[size=1]" from cache "NodeColumnsHaloExchangeCache".
+
+Run: Finishing oops::Variational<MPAS, UFO and IODA observations>
+OOPS_STATS  
+OOPS_STATS ----------------------------------------------------------------------------------
+OOPS_STATS --------------------------- Object counts ----------------------------------------
+OOPS_STATS ----------------------------------------------------------------------------------
+OOPS_STATS                                      Total  Simult. Remain    Avg (Mb)    HWM (Mb)
+OOPS_STATS ioda::ObsDataVector             :        8       5        
+OOPS_STATS ioda::ObsVector                 :       94       8        
+OOPS_STATS mpas::Geometry                  :        2       2        
+OOPS_STATS mpas::Increment                 :     2704     121        
+OOPS_STATS mpas::LinVarChaModel2GeoVars    :        1       1        
+OOPS_STATS mpas::ModelBias                 :        4       3        
+OOPS_STATS mpas::ModelBiasCovariance       :        1       1        
+OOPS_STATS mpas::State                     :       75      34        
+OOPS_STATS mpas::VarChaModel2GeoVars       :        3       1        
+OOPS_STATS oops::ControlIncrement          :      166      88               15.22     1339.40
+OOPS_STATS oops::ControlVariable           :        4       3        
+OOPS_STATS oops::Diffusion                 :        1       1        
+OOPS_STATS oops::EnsembleCovariance        :        1       1             3543.73     3543.73
+OOPS_STATS oops::GeoVaLs                   :       78       1        
+OOPS_STATS oops::Geometry                  :        2       2        
+OOPS_STATS oops::GetValues                 :        3       2        
+OOPS_STATS oops::Increment                 :     2628     121               15.02     1841.67
+OOPS_STATS oops::LinearObsOperator         :        1       1        
+OOPS_STATS oops::LocalInterpolator         :     2400    1600        
+OOPS_STATS oops::Localization              :        1       1        
+OOPS_STATS oops::ModelAuxControl           :        4       3        
+OOPS_STATS oops::ModelAuxCovariance        :        1       1        
+OOPS_STATS oops::ModelAuxIncrement         :      166      88        
+OOPS_STATS oops::ObsAuxControl             :        4       3        
+OOPS_STATS oops::ObsAuxCovariance          :        1       1        
+OOPS_STATS oops::ObsAuxIncrement           :      166      88        
+OOPS_STATS oops::ObsAuxIncrements          :      166      88        
+OOPS_STATS oops::ObsAuxPreconditioner      :        2       2        
+OOPS_STATS oops::ObsDataVector             :        4       4        
+OOPS_STATS oops::ObsDiagnostics            :        2       1        
+OOPS_STATS oops::ObsError                  :        1       1        
+OOPS_STATS oops::ObsOperator               :        2       2        
+OOPS_STATS oops::ObsSpace                  :        1       1                1.36        1.36
+OOPS_STATS oops::ObsSpaces                 :        1       1        
+OOPS_STATS oops::ObsVector                 :       94       7                0.04        0.24
+OOPS_STATS oops::SampledLocations          :        8       4        
+OOPS_STATS oops::State                     :       72      34               21.39      702.08
+OOPS_STATS oops::UnstructuredInterpolator  :     2400    1600        
+OOPS_STATS oops::VariableChange            :        3       1        
+OOPS_STATS ufo::BackgroundCheck            :        1       1        
+OOPS_STATS ufo::FinalCheck                 :        2       2        
+OOPS_STATS ufo::GeoVaLs                    :       81       2        
+OOPS_STATS ufo::ObsBias                    :        4       3        
+OOPS_STATS ufo::ObsBiasCovariance          :        1       1        
+OOPS_STATS ufo::ObsBiasPreconditioner      :        1       1        
+OOPS_STATS ufo::ObsFilter                  :        9       6        
+OOPS_STATS ufo::ObsFilterData              :        3       3        
+OOPS_STATS ufo::ObsVertInterp              :        2       2        
+OOPS_STATS ufo::ObsVertInterpTLAD          :        1       1        
+OOPS_STATS ufo::SampledLocations           :        4       3        
+OOPS_STATS ----------------------------- Object counts --------------------------------------
+OOPS_STATS  
+OOPS_STATS --------------------------------------------------------------------------------------------
+OOPS_STATS ------------------------------------ Timing Statistics -------------------------------------
+OOPS_STATS --------------------------------------------------------------------------------------------
+OOPS_STATS Name                                                :   total (ms)   count    time/call (ms)
+OOPS_STATS ObsFilter::Background Check::ObsFilter              :         0.09       1            0.0901
+OOPS_STATS ObsFilter::Background Check::postFilter             :       107.85       1          107.8452
+OOPS_STATS ObsFilter::Background Check::preProcess             :         0.00       1            0.0026
+OOPS_STATS ObsFilter::Background Check::priorFilter            :         0.03       1            0.0257
+OOPS_STATS ObsFilter::Final Check::ObsFilter                   :         0.01       2            0.0046
+OOPS_STATS ObsFilter::Final Check::postFilter                  :         0.05       2            0.0227
+OOPS_STATS ObsFilter::Final Check::preProcess                  :         0.00       2            0.0004
+OOPS_STATS ObsFilter::Final Check::priorFilter                 :         0.00       2            0.0012
+OOPS_STATS ObsFilter::QCmanager::ObsFilter                     :         0.28       2            0.1393
+OOPS_STATS ObsFilter::QCmanager::postFilter                    :         0.22       2            0.1090
+OOPS_STATS ObsFilter::QCmanager::preProcess                    :         0.00       2            0.0001
+OOPS_STATS ObsFilter::QCmanager::priorFilter                   :         0.00       2            0.0001
+OOPS_STATS ioda::ObsSpace::get_db(DateTime)                    :         0.72       4            0.1789
+OOPS_STATS ioda::ObsSpace::get_db(double)                      :         0.27       5            0.0542
+OOPS_STATS ioda::ObsSpace::get_db(float)                       :         0.74      12            0.0620
+OOPS_STATS ioda::ObsSpace::load                                :       684.07       1          684.0687
+OOPS_STATS ioda::ObsSpace::put_db(double)                      :         0.31       6            0.0511
+OOPS_STATS ioda::ObsSpace::put_db(float)                       :         0.08       2            0.0415
+OOPS_STATS ioda::ObsSpace::put_db(int)                         :         0.35       2            0.1737
+OOPS_STATS mpas::LinVarChaModel2GeoVars::LinVarChaModel2GeoVar :         4.00       1            4.0037
+OOPS_STATS mpas::LinVarChaModel2GeoVars::changeVarAD           :       773.37      38           20.3519
+OOPS_STATS mpas::LinVarChaModel2GeoVars::changeVarTL           :       132.23      37            3.5738
+OOPS_STATS mpas::LinVarChaModel2GeoVars::~LinVarChaModel2GeoVa :         0.04       1            0.0354
+OOPS_STATS mpas::VarChaModel2GeoVars::VarChaModel2GeoVars      :         0.05       3            0.0169
+OOPS_STATS mpas::VarChaModel2GeoVars::changeVar                :        12.47       3            4.1578
+OOPS_STATS mpas::VarChaModel2GeoVars::~VarChaModel2GeoVars     :         0.01       3            0.0021
+OOPS_STATS oops::Covariance::EnsembleCovariance                :     69425.73       1        69425.7275
+OOPS_STATS oops::Covariance::ensemble::Constructor             :         0.01       1            0.0098
+OOPS_STATS oops::Covariance::ensemble::multiply                :    212494.35      38         5591.9565
+OOPS_STATS oops::Diffusion::Diffusion                          :         0.00       1            0.0001
+OOPS_STATS oops::Diffusion::calculateDerivedGeom               :         1.94       1            1.9410
+OOPS_STATS oops::Diffusion::multiplySqrtAD                     :     52431.24    1140           45.9923
+OOPS_STATS oops::Diffusion::multiplySqrtTL                     :     44284.03    1140           38.8456
+OOPS_STATS oops::Diffusion::setParameters                      :         4.71       1            4.7068
+OOPS_STATS oops::GeoVaLs::GeoVaLs                              :        17.94      78            0.2300
+OOPS_STATS oops::GeoVaLs::fill                                 :        28.59   26660            0.0011
+OOPS_STATS oops::GeoVaLs::fillAD                               :        21.97   23560            0.0009
+OOPS_STATS oops::GeoVaLs::~GeoVaLs                             :         0.44      78            0.0057
+OOPS_STATS oops::Geometry::Geometry                            :     54049.86       2        27024.9317
+OOPS_STATS oops::Geometry::variableSizes                       :         4.66      11            0.4236
+OOPS_STATS oops::Geometry::~Geometry                           :       362.05       2          181.0249
+OOPS_STATS oops::GeometryData::containingTriangleAndBarycentri :        46.56   20475            0.0023
+OOPS_STATS oops::GeometryData::setGlobalTree                   :      1834.59       2          917.2971
+OOPS_STATS oops::GeometryData::setLocalTree                    :         3.16       2            1.5818
+OOPS_STATS oops::GeometryData::setMeshAndTriangulation         :         0.29       2            0.1450
+OOPS_STATS oops::GetValues::GetValues                          :       260.74       3           86.9126
+OOPS_STATS oops::GetValues::fillGeoVaLs                        :        70.61       3           23.5369
+OOPS_STATS oops::GetValues::fillGeoVaLsAD                      :       108.97      38            2.8677
+OOPS_STATS oops::GetValues::fillGeoVaLsTL                      :       663.44      37           17.9307
+OOPS_STATS oops::GetValues::finalize                           :        13.03       3            4.3441
+OOPS_STATS oops::GetValues::finalizeAD                         :       566.69      38           14.9129
+OOPS_STATS oops::GetValues::finalizeTL                         :        94.34      37            2.5497
+OOPS_STATS oops::GetValues::initialize                         :         1.97       3            0.6556
+OOPS_STATS oops::GetValues::initializeAD                       :         4.70      38            0.1238
+OOPS_STATS oops::GetValues::initializeTL                       :        15.18      37            0.4103
+OOPS_STATS oops::GetValues::process                            :        18.60       3            6.2012
+OOPS_STATS oops::GetValues::processAD                          :       118.84      38            3.1275
+OOPS_STATS oops::GetValues::processTL                          :       125.19      37            3.3836
+OOPS_STATS oops::Increment::Increment                          :     23720.93    2628            9.0262
+OOPS_STATS oops::Increment::axpy                               :      4662.11     777            6.0001
+OOPS_STATS oops::Increment::diff                               :       364.15      33           11.0348
+OOPS_STATS oops::Increment::dot_product_with                   :      7404.97     855            8.6608
+OOPS_STATS oops::Increment::fromFieldSet                       :      9500.09    1178            8.0646
+OOPS_STATS oops::Increment::operator*=                         :       180.81     112            1.6144
+OOPS_STATS oops::Increment::operator+=                         :      8781.57    1319            6.6577
+OOPS_STATS oops::Increment::operator+=(State, Increment)       :        45.72       1           45.7152
+OOPS_STATS oops::Increment::operator-=                         :       152.40      30            5.0800
+OOPS_STATS oops::Increment::operator=                          :      4712.18    1454            3.2408
+OOPS_STATS oops::Increment::print                              :     32547.67    1147           28.3763
+OOPS_STATS oops::Increment::schur_product_with                 :      9770.79    2280            4.2854
+OOPS_STATS oops::Increment::serialSize                         :         4.10     166            0.0247
+OOPS_STATS oops::Increment::toFieldSet                         :      9726.76    1215            8.0056
+OOPS_STATS oops::Increment::zero                               :       122.48     115            1.0650
+OOPS_STATS oops::Increment::~Increment                         :       120.06    2628            0.0457
+OOPS_STATS oops::LinearObsOper::refl10cm::LinearObsOperator    :         1.49       1            1.4947
+OOPS_STATS oops::LinearObsOper::refl10cm::requiredVars         :         0.08      77            0.0010
+OOPS_STATS oops::LinearObsOper::refl10cm::setTrajectory        :         0.91       1            0.9141
+OOPS_STATS oops::LinearObsOper::refl10cm::simulateObsAD        :         3.27      38            0.0860
+OOPS_STATS oops::LinearObsOper::refl10cm::simulateObsTL        :         6.40      37            0.1729
+OOPS_STATS oops::LinearObsOper::refl10cm::~LinearObsOperator   :         0.03       1            0.0335
+OOPS_STATS oops::LinearVariableChange::LinearVariableChange    :        19.53       1           19.5314
+OOPS_STATS oops::LinearVariableChange::changeVarAD             :      1345.74      38           35.4142
+OOPS_STATS oops::LinearVariableChange::changeVarTL             :       402.48      37           10.8778
+OOPS_STATS oops::LinearVariableChange::changeVarTraj           :         4.02       1            4.0191
+OOPS_STATS oops::LinearVariableChange::~LinearVariableChange   :         0.05       1            0.0494
+OOPS_STATS oops::LocalInterpolator::LocalInterpolator          :        55.02    2400            0.0229
+OOPS_STATS oops::LocalInterpolator::apply                      :        17.25    2400            0.0072
+OOPS_STATS oops::LocalInterpolator::applyAD                    :       103.20   30400            0.0034
+OOPS_STATS oops::LocalInterpolator::applyTL                    :       109.98   29600            0.0037
+OOPS_STATS oops::LocalInterpolator::preprocess                 :      1264.06      40           31.6014
+OOPS_STATS oops::LocalInterpolator::preprocessAD               :        45.91      38            1.2083
+OOPS_STATS oops::LocalInterpolator::~LocalInterpolator         :         1.60    2400            0.0007
+OOPS_STATS oops::Localization::Localization                    :      7741.94       1         7741.9443
+OOPS_STATS oops::Localization::multiply                        :    179166.54    1140          157.1636
+OOPS_STATS oops::Localization::~Localization                   :         0.60       1            0.5974
+OOPS_STATS oops::ModelAuxControl::ModelAuxControl              :         0.01       4            0.0020
+OOPS_STATS oops::ModelAuxControl::print                        :         0.00       3            0.0009
+OOPS_STATS oops::ModelAuxControl::~ModelAuxControl             :         0.01       4            0.0017
+OOPS_STATS oops::ModelAuxCovariance::ModelAuxCovariance        :         0.00       1            0.0017
+OOPS_STATS oops::ModelAuxCovariance::linearize                 :         0.00       1            0.0001
+OOPS_STATS oops::ModelAuxCovariance::multiply                  :         0.01      38            0.0003
+OOPS_STATS oops::ModelAuxCovariance::~ModelAuxCovariance       :         0.00       1            0.0006
+OOPS_STATS oops::ModelAuxIncrement::ModelAuxIncrement          :         0.14     166            0.0009
+OOPS_STATS oops::ModelAuxIncrement::axpy                       :         0.31     777            0.0004
+OOPS_STATS oops::ModelAuxIncrement::diff                       :         0.00       3            0.0004
+OOPS_STATS oops::ModelAuxIncrement::dot_product_with           :         0.24     855            0.0003
+OOPS_STATS oops::ModelAuxIncrement::operator*=                 :         0.04      73            0.0006
+OOPS_STATS oops::ModelAuxIncrement::operator+=                 :         0.06     111            0.0006
+OOPS_STATS oops::ModelAuxIncrement::operator+=ModelAuxControl  :         0.00       1            0.0002
+OOPS_STATS oops::ModelAuxIncrement::operator=                  :         0.01      41            0.0003
+OOPS_STATS oops::ModelAuxIncrement::print                      :         0.01       7            0.0013
+OOPS_STATS oops::ModelAuxIncrement::serialSize                 :         0.01     166            0.0001
+OOPS_STATS oops::ModelAuxIncrement::zero                       :         0.01      38            0.0003
+OOPS_STATS oops::ModelAuxIncrement::~ModelAuxIncrement         :         0.03     166            0.0002
+OOPS_STATS oops::ObsAuxControl::ObsAuxControl                  :         0.15       4            0.0367
+OOPS_STATS oops::ObsAuxControl::print                          :         0.00       3            0.0008
+OOPS_STATS oops::ObsAuxControl::requiredHdiagnostics           :         0.00       2            0.0001
+OOPS_STATS oops::ObsAuxControl::requiredVars                   :         0.00       6            0.0002
+OOPS_STATS oops::ObsAuxControl::write                          :         0.03       1            0.0293
+OOPS_STATS oops::ObsAuxControl::~ObsAuxControl                 :         0.01       4            0.0023
+OOPS_STATS oops::ObsAuxCovariance::ObsAuxCovariance            :         0.06       1            0.0594
+OOPS_STATS oops::ObsAuxCovariance::inverseMultiply             :         0.05      38            0.0012
+OOPS_STATS oops::ObsAuxCovariance::linearize                   :         0.02       1            0.0156
+OOPS_STATS oops::ObsAuxCovariance::multiply                    :         0.19      38            0.0050
+OOPS_STATS oops::ObsAuxCovariance::preconditioner              :         0.01       1            0.0139
+OOPS_STATS oops::ObsAuxCovariance::write                       :         0.02       1            0.0210
+OOPS_STATS oops::ObsAuxCovariance::~ObsAuxCovariance           :         0.00       1            0.0015
+OOPS_STATS oops::ObsAuxIncrement::ObsAuxIncrement              :         0.83     166            0.0050
+OOPS_STATS oops::ObsAuxIncrement::axpy                         :         0.85     777            0.0011
+OOPS_STATS oops::ObsAuxIncrement::diff                         :         0.01       3            0.0044
+OOPS_STATS oops::ObsAuxIncrement::dot_product_with             :         0.51     855            0.0006
+OOPS_STATS oops::ObsAuxIncrement::operator*=                   :         0.08      73            0.0010
+OOPS_STATS oops::ObsAuxIncrement::operator+=                   :         0.15     111            0.0014
+OOPS_STATS oops::ObsAuxIncrement::operator=                    :         0.03      41            0.0007
+OOPS_STATS oops::ObsAuxIncrement::print                        :         0.01       7            0.0010
+OOPS_STATS oops::ObsAuxIncrement::serialSize                   :         0.01     332            0.0000
+OOPS_STATS oops::ObsAuxIncrement::zero                         :         0.05      38            0.0012
+OOPS_STATS oops::ObsAuxIncrement::~ObsAuxIncrement             :         0.19     166            0.0011
+OOPS_STATS oops::ObsAuxPreconditioner::multiply                :         0.05      38            0.0012
+OOPS_STATS oops::ObsAuxPreconditioner::~ObsAuxPreconditioner   :         0.00       2            0.0010
+OOPS_STATS oops::ObsDataVector::ObsDataVector                  :         0.10       4            0.0238
+OOPS_STATS oops::ObsDataVector::mask                           :         0.01       2            0.0040
+OOPS_STATS oops::ObsDataVector::operator=                      :         0.15       2            0.0739
+OOPS_STATS oops::ObsDataVector::print                          :         6.11       2            3.0526
+OOPS_STATS oops::ObsDataVector::save                           :         0.45       4            0.1130
+OOPS_STATS oops::ObsDataVector::~ObsDataVector                 :         0.01       4            0.0030
+OOPS_STATS oops::ObsDiagnostics::ObsDiagnostics                :         0.12       2            0.0608
+OOPS_STATS oops::ObsDiagnostics::~ObsDiagnostics               :         0.02       2            0.0088
+OOPS_STATS oops::ObsError::getRMSE                             :         0.81       4            0.2021
+OOPS_STATS oops::ObsError::inverseMultiply                     :         0.37      39            0.0095
+OOPS_STATS oops::ObsError::obserrors                           :         0.37       6            0.0620
+OOPS_STATS oops::ObsError::update                              :        11.76       2            5.8780
+OOPS_STATS oops::ObsError::~ObsError                           :         0.01       1            0.0084
+OOPS_STATS oops::ObsOperator::refl10cm::ObsOperator            :        15.62       2            7.8077
+OOPS_STATS oops::ObsOperator::refl10cm::computeReducedVars     :         0.87       3            0.2914
+OOPS_STATS oops::ObsOperator::refl10cm::locations              :         1.51       3            0.5030
+OOPS_STATS oops::ObsOperator::refl10cm::requiredVars           :         0.00       3            0.0010
+OOPS_STATS oops::ObsOperator::refl10cm::simulateObs            :         1.25       2            0.6256
+OOPS_STATS oops::ObsOperator::refl10cm::~ObsOperator           :         0.03       2            0.0130
+OOPS_STATS oops::ObsSpace::ObsSpace                            :       686.62       1          686.6193
+OOPS_STATS oops::ObsSpace::obsvariables                        :         0.00       3            0.0000
+OOPS_STATS oops::ObsSpace::save                                :      2642.84       1         2642.8370
+OOPS_STATS oops::ObsSpace::~ObsSpace                           :         0.66       1            0.6616
+OOPS_STATS oops::ObsVector::ObsVector                          :         1.09      92            0.0119
+OOPS_STATS oops::ObsVector::dot_product                        :         0.74       4            0.1851
+OOPS_STATS oops::ObsVector::info                               :         2.92       6            0.4866
+OOPS_STATS oops::ObsVector::operator*=                         :         0.01       2            0.0050
+OOPS_STATS oops::ObsVector::operator-=                         :         0.02       2            0.0106
+OOPS_STATS oops::ObsVector::operator=                          :         0.40       4            0.0993
+OOPS_STATS oops::ObsVector::rms                                :         0.46       4            0.1159
+OOPS_STATS oops::ObsVector::save                               :         0.33       6            0.0553
+OOPS_STATS oops::ObsVector::zero                               :         0.04      39            0.0009
+OOPS_STATS oops::ObsVector::~ObsVector                         :         0.24      92            0.0026
+OOPS_STATS oops::Parameters::deserialize                       :        31.48      97            0.3245
+OOPS_STATS oops::Parameters::serialize                         :         2.05      80            0.0257
+OOPS_STATS oops::Run::execute                                  :    387151.41       1       387151.4060
+OOPS_STATS oops::SampledLocations::SampledLocations            :         0.00       4            0.0003
+OOPS_STATS oops::SampledLocations::latitudes                   :         0.00       3            0.0002
+OOPS_STATS oops::SampledLocations::longitudes                  :         0.00       3            0.0000
+OOPS_STATS oops::SampledLocations::times                       :         0.00       3            0.0000
+OOPS_STATS oops::SampledLocations::~SampledLocations           :         0.20       8            0.0247
+OOPS_STATS oops::State::State                                  :     63430.81      72          880.9834
+OOPS_STATS oops::State::print                                  :       254.86       3           84.9530
+OOPS_STATS oops::State::toFieldSet                             :        22.32       5            4.4636
+OOPS_STATS oops::State::variables                              :         0.00      58            0.0000
+OOPS_STATS oops::State::write                                  :     20139.09       1        20139.0857
+OOPS_STATS oops::State::zero                                   :        67.05      30            2.2350
+OOPS_STATS oops::State::~State                                 :         7.30      72            0.1013
+OOPS_STATS oops::UnstructuredInterpolator::UnstructuredInterpo :        53.45    2400            0.0223
+OOPS_STATS oops::UnstructuredInterpolator::apply               :       118.70   32000            0.0037
+OOPS_STATS oops::UnstructuredInterpolator::applyAD             :        73.70   30400            0.0024
+OOPS_STATS oops::VariableChange::VariableChange                :         0.32       3            0.1054
+OOPS_STATS oops::VariableChange::changeVar                     :        19.97       3            6.6561
+OOPS_STATS oops::VariableChange::~VariableChange               :         0.02       3            0.0072
+OOPS_STATS oops::util::FieldSetHelpers::readFieldSet           :      7690.16       2         3845.0790
+OOPS_STATS saber::Localization::Localization                   :      7741.93       1         7741.9333
+OOPS_STATS saber::Localization::multiply                       :    169763.88    1140          148.9157
+OOPS_STATS saber::Localization::~Localization                  :         0.00       1            0.0001
+OOPS_STATS ufo::ObsFilter::ObsFilter                           :         0.38       5            0.0763
+OOPS_STATS ufo::ObsFilter::checkFilterData                     :         0.01      15            0.0004
+OOPS_STATS ufo::ObsFilter::postFilter                          :       108.11       5           21.6229
+OOPS_STATS ufo::ObsFilter::preProcess                          :         0.01       5            0.0018
+OOPS_STATS ufo::ObsFilter::priorFilter                         :         0.03       5            0.0069
+OOPS_STATS ufo::ObsFilter::~ObsFilter                          :       136.46       9           15.1626
+OOPS_STATS util::Timers::measured                              :    386781.62       1       386781.6205
+OOPS_STATS ------------------------------------ Timing Statistics -------------------------------------
+
+OOPS_STATS ------------------------------------------------------------------------------------------------------------------
+OOPS_STATS ---------------------------------- Parallel Timing Statistics ( 800 MPI tasks) -----------------------------------
+OOPS_STATS ------------------------------------------------------------------------------------------------------------------
+OOPS_STATS Name                                                :     min (ms)    max (ms)    avg (ms)     % total   imbal (%)
+OOPS_STATS oops::Covariance::EnsembleCovariance                :     69424.56    69427.97    69425.19       17.93        0.00
+OOPS_STATS oops::Covariance::ensemble::multiply                :    212080.67   213311.00   212580.93       54.90        0.58
+OOPS_STATS oops::Diffusion::multiplySqrtAD                     :     50683.72    65669.78    53000.55       13.69       28.28
+OOPS_STATS oops::Diffusion::multiplySqrtTL                     :     41276.32    68032.01    46478.65       12.00       57.57
+OOPS_STATS oops::Geometry::Geometry                            :     52889.81    54214.43    54129.40       13.98        2.45
+OOPS_STATS oops::Geometry::~Geometry                           :       329.80      519.57      434.76        0.11       43.65
+OOPS_STATS oops::GeometryData::setGlobalTree                   :      1834.59     1969.01     1889.40        0.49        7.11
+OOPS_STATS oops::GetValues::fillGeoVaLsTL                      :       265.92      746.78      582.54        0.15       82.55
+OOPS_STATS oops::GetValues::finalizeAD                         :       479.34      949.96      580.12        0.15       81.13
+OOPS_STATS oops::Increment::Increment                          :     13604.74    25770.65    21899.65        5.66       55.55
+OOPS_STATS oops::Increment::axpy                               :      3951.65     5160.03     4666.09        1.21       25.90
+OOPS_STATS oops::Increment::dot_product_with                   :      6592.93     8380.05     7363.49        1.90       24.27
+OOPS_STATS oops::Increment::fromFieldSet                       :      7529.86    18558.45     9852.27        2.54      111.94
+OOPS_STATS oops::Increment::operator+=                         :      6905.80    12558.37     9100.84        2.35       62.11
+OOPS_STATS oops::Increment::operator=                          :      2954.51     5862.14     4810.39        1.24       60.44
+OOPS_STATS oops::Increment::print                              :     11997.42    46223.14    29831.77        7.70      114.73
+OOPS_STATS oops::Increment::schur_product_with                 :      5276.30    12258.38    10088.16        2.61       69.21
+OOPS_STATS oops::Increment::toFieldSet                         :      7597.16    19426.30    10260.53        2.65      115.29
+OOPS_STATS oops::LinearVariableChange::changeVarAD             :       930.48     2003.94     1406.05        0.36       76.35
+OOPS_STATS oops::LinearVariableChange::changeVarTL             :       397.67      721.86      509.86        0.13       63.58
+OOPS_STATS oops::LocalInterpolator::preprocess                 :        65.89     1319.81     1267.82        0.33       98.90
+OOPS_STATS oops::Localization::Localization                    :      7704.68     7895.51     7772.42        2.01        2.46
+OOPS_STATS oops::Localization::multiply                        :    175738.82   192869.17   179801.42       46.44        9.53
+OOPS_STATS oops::ObsSpace::ObsSpace                            :       641.34      719.10      684.85        0.18       11.35
+OOPS_STATS oops::ObsSpace::save                                :      2491.87     2654.14     2565.33        0.66        6.33
+OOPS_STATS oops::State::State                                  :     63278.12    63554.69    63413.85       16.38        0.44
+OOPS_STATS oops::State::write                                  :     18910.76    20169.76    20142.76        5.20        6.25
+OOPS_STATS oops::util::FieldSetHelpers::readFieldSet           :      7493.41     7690.16     7548.07        1.95        2.61
+OOPS_STATS saber::Localization::Localization                   :      7704.67     7895.49     7772.40        2.01        2.46
+OOPS_STATS saber::Localization::multiply                       :    166461.34   187518.20   170778.33       44.11       12.33
+OOPS_STATS util::Timers::measured                              :    386781.62   387009.83   386906.12       99.92        0.06
+OOPS_STATS oops::Run::execute                                  :    387127.87   387263.82   387197.22      100.00        0.04
+OOPS_STATS ---------------------------------- Parallel Timing Statistics ( 800 MPI tasks) -----------------------------------
+
+OOPS_STATS Run end                                  - Runtime:    388.58 sec,  Memory: total:  4033.31 GB, per task: min =     4.74 GB, max =     7.26 GB
+Run: Finishing oops::Variational<MPAS, UFO and IODA observations> with status = 0
+OOPS Ending   2026-05-28 11:35:00 (UTC+0000)
